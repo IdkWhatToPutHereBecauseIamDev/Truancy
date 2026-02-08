@@ -14,6 +14,8 @@
     <aside class="sidebar">
       <div class="sidebar-logo">T</div>
       <button class="side-btn active" data-view="browser">🌐</button>
+      <button class="side-btn" data-view="bookmarks">★</button>
+      <button class="side-btn" data-view="downloads">⬇️</button>
       <button class="side-btn" data-view="settings">⚙️</button>
       <button class="side-btn" data-view="console">>_</button>
     </aside>
@@ -21,15 +23,16 @@
     <!-- Main -->
     <div class="main">
 
-      <!-- Topbar -->
+      <!-- Topbar (tabs) -->
       <header class="topbar">
         <div class="tabs" id="tab-strip"></div>
         <button id="new-tab" class="new-tab-btn">+</button>
       </header>
 
-      <!-- Browser View -->
+      <!-- Views -->
       <main class="views">
 
+        <!-- BROWSER -->
         <section id="view-browser" class="view active">
 
           <!-- Browser Top Bar -->
@@ -41,6 +44,7 @@
             <input id="url-input" class="url-input" placeholder="Search or enter URL…" />
 
             <button id="fav-btn" class="nav-btn">★</button>
+            <button id="download-btn" class="nav-btn">⬇️</button>
             <button id="share-btn" class="nav-btn">⤴</button>
             <button id="menu-btn" class="nav-btn">⋮</button>
           </div>
@@ -48,6 +52,18 @@
           <!-- Browser Frame -->
           <iframe id="browser-frame" class="browser-frame"></iframe>
 
+        </section>
+
+        <!-- BOOKMARKS -->
+        <section id="view-bookmarks" class="view">
+          <h2>Bookmarks</h2>
+          <ul id="bookmark-list" class="list"></ul>
+        </section>
+
+        <!-- DOWNLOADS -->
+        <section id="view-downloads" class="view">
+          <h2>Downloads</h2>
+          <ul id="download-list" class="list"></ul>
         </section>
 
         <!-- SETTINGS -->
@@ -71,7 +87,6 @@
               <option value="https://www.bing.com/search?q=">Bing</option>
             </select>
           </div>
-
         </section>
 
         <!-- CONSOLE -->
