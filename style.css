@@ -75,7 +75,7 @@ body {
   flex-direction: column;
 }
 
-/* Topbar */
+/* Topbar (tabs) */
 .topbar {
   height: 52px;
   display: flex;
@@ -89,6 +89,7 @@ body {
   display: flex;
   gap: 10px;
   flex: 1;
+  overflow-x: auto;
 }
 
 .tab {
@@ -105,10 +106,42 @@ body {
   transition: 0.25s ease;
 }
 
+.tab-title {
+  max-width: 90px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tab-close {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: none;
+  background: #222;
+  color: #aaa;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
 .tab.active {
   border-color: var(--accent);
   color: #fff;
   box-shadow: 0 0 16px var(--accent);
+}
+
+.tab.closing {
+  animation: tab-close 0.18s forwards;
+}
+
+@keyframes tab-close {
+  to {
+    transform: scale(0.6);
+    opacity: 0;
+  }
 }
 
 .new-tab-btn {
@@ -120,6 +153,20 @@ body {
   color: #000;
   font-size: 20px;
   cursor: pointer;
+}
+
+/* Views */
+.views {
+  flex: 1;
+}
+
+.view {
+  display: none;
+  padding: 10px;
+}
+
+.view.active {
+  display: block;
 }
 
 /* Browser bar */
@@ -159,11 +206,56 @@ body {
   background: #000;
 }
 
+/* Lists (bookmarks/downloads) */
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  font-size: 13px;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 4px;
+  border-bottom: 1px solid #151520;
+}
+
+.list-item-main {
+  flex: 1;
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+.list-item-url {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.list-item-btn {
+  border: none;
+  border-radius: 8px;
+  padding: 4px 8px;
+  background: #222;
+  color: #ccc;
+  font-size: 11px;
+  cursor: pointer;
+}
+
 /* Settings */
 .setting-row {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin: 12px 0;
+}
+
+.theme-options {
+  display: flex;
+  gap: 8px;
 }
 
 .theme-dot {
@@ -177,6 +269,14 @@ body {
 .theme-dot[data-theme="gx-orange"] { background: #ff7a1a; }
 .theme-dot[data-theme="gx-purple"] { background: #b15cff; }
 
+#search-engine {
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: none;
+  background: #080812;
+  color: var(--fg);
+}
+
 /* Console */
 .console-output {
   background: #080812;
@@ -186,6 +286,7 @@ body {
   height: 50vh;
   overflow-y: auto;
   font-family: monospace;
+  font-size: 12px;
 }
 
 .console-input {
