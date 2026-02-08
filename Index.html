@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Truancy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-theme="dark">
+
+  <header class="top">
+    <div class="title">TRUANCY</div>
+    <nav class="tabs">
+      <button class="tab active" data-view="home">Home</button>
+      <button class="tab" data-view="browser">Browser</button>
+      <button class="tab" data-view="settings">Settings</button>
+      <button class="tab" data-view="console">Console</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HOME -->
+    <section id="view-home" class="view active">
+      <h1>Welcome to Truancy</h1>
+      <p>Use tru:// links for official pages.</p>
+
+      <div class="omnibox">
+        <input id="urlbox" type="text" placeholder="Enter URL or tru://…" />
+        <button id="go">Go</button>
+      </div>
+
+      <h2>History</h2>
+      <ul id="log"></ul>
+    </section>
+
+    <!-- BROWSER -->
+    <section id="view-browser" class="view">
+      <h1>Browser</h1>
+
+      <div class="omnibox">
+        <input id="embed-url" type="text" placeholder="Enter URL or tru://…" />
+        <button id="embed-go">Load</button>
+      </div>
+
+      <iframe id="browser-frame" src="about:blank"></iframe>
+    </section>
+
+    <!-- SETTINGS -->
+    <section id="view-settings" class="view">
+      <h1>Settings</h1>
+
+      <div class="setting-row">
+        <span>Theme</span>
+        <div class="setting-actions">
+          <button class="theme-btn" data-theme="dark">Dark</button>
+          <button class="theme-btn" data-theme="neon">Neon</button>
+        </div>
+      </div>
+
+      <div class="setting-row">
+        <span>Search Engine</span>
+        <select id="search-engine">
+          <option value="https://duckduckgo.com/?q=">DuckDuckGo</option>
+          <option value="https://www.google.com/search?q=">Google</option>
+          <option value="https://www.bing.com/search?q=">Bing</option>
+        </select>
+      </div>
+
+      <div class="setting-row">
+        <span>Clear history</span>
+        <button id="clear-history">Clear</button>
+      </div>
+    </section>
+
+    <!-- CONSOLE -->
+    <section id="view-console" class="view">
+      <h1>Console</h1>
+      <div id="console-output"></div>
+      <input id="console-input" placeholder="Type a command…" />
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
