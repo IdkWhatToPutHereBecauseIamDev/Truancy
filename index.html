@@ -1,112 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Truancy GX</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Truancy Browser</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body data-theme="gx-red">
+<body>
 
-  <div class="shell">
-
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <div class="sidebar-logo">T</div>
-      <button class="side-btn active" data-view="browser">🌐</button>
-      <button class="side-btn" data-view="bookmarks">★</button>
-      <button class="side-btn" data-view="downloads">⬇️</button>
-      <button class="side-btn" data-view="settings">⚙️</button>
-      <button class="side-btn" data-view="console">>_</button>
-    </aside>
-
-    <!-- Main -->
-    <div class="main">
-
-      <!-- Topbar (tabs) -->
-      <header class="topbar">
-        <div class="tabs" id="tab-strip"></div>
-        <button id="new-tab" class="new-tab-btn">+</button>
-      </header>
-
-      <!-- Views -->
-      <main class="views">
-
-        <!-- BROWSER -->
-        <section id="view-browser" class="view active">
-
-          <!-- Browser Top Bar -->
-          <div class="browser-bar">
-            <button id="back-btn" class="nav-btn">⟵</button>
-            <button id="forward-btn" class="nav-btn">⟶</button>
-            <button id="refresh-btn" class="nav-btn">⟳</button>
-
-            <input id="url-input" class="url-input" placeholder="Search or enter URL…" />
-
-            <button id="fav-btn" class="nav-btn">★</button>
-
-            <button id="download-btn" class="nav-btn">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                <path d="M12 3v12m0 0l-5-5m5 5l5-5M5 19h14"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              </svg>
-            </button>
-
-            <button id="share-btn" class="nav-btn">⤴</button>
-            <button id="menu-btn" class="nav-btn">⋮</button>
-          </div>
-
-          <!-- Browser Frame -->
-          <iframe id="browser-frame" class="browser-frame"></iframe>
-
-        </section>
-
-        <!-- BOOKMARKS -->
-        <section id="view-bookmarks" class="view">
-          <h2>Bookmarks</h2>
-          <ul id="bookmark-list" class="list"></ul>
-        </section>
-
-        <!-- DOWNLOADS -->
-        <section id="view-downloads" class="view">
-          <h2>Downloads</h2>
-          <ul id="download-list" class="list"></ul>
-        </section>
-
-        <!-- SETTINGS -->
-        <section id="view-settings" class="view">
-          <h2>Settings</h2>
-
-          <div class="setting-row">
-            <span>Theme</span>
-            <div class="theme-options">
-              <span class="theme-dot" data-theme="gx-red"></span>
-              <span class="theme-dot" data-theme="gx-orange"></span>
-              <span class="theme-dot" data-theme="gx-purple"></span>
-            </div>
-          </div>
-
-          <div class="setting-row">
-            <span>Search Engine</span>
-            <select id="search-engine">
-              <option value="https://lite.duckduckgo.com/lite/?q=">DuckDuckGo Lite</option>
-              <option value="https://www.google.com/search?q=">Google</option>
-              <option value="https://www.bing.com/search?q=">Bing</option>
-            </select>
-          </div>
-        </section>
-
-        <!-- CONSOLE -->
-        <section id="view-console" class="view">
-          <h2>Console</h2>
-          <div id="console-output" class="console-output"></div>
-          <input id="console-input" class="console-input" placeholder="Commands: open <url>, search <query>, clear" />
-        </section>
-
-      </main>
+    <div id="sidebar">
+        <h2>Truancy</h2>
+        <button class="side-btn" data-view="browser">Browser</button>
+        <button class="side-btn" data-view="bookmarks">Bookmarks</button>
+        <button class="side-btn" data-view="downloads">Downloads</button>
+        <button class="side-btn" data-view="console">Console</button>
     </div>
-  </div>
 
-  <script src="app.js"></script>
+    <div id="topbar">
+        <input id="urlbar" type="text" placeholder="Enter URL…">
+        <button id="goBtn">Go</button>
+        <button id="toggleSidebar">☰</button>
+    </div>
+
+    <div id="views">
+
+        <div id="browserView" class="view">
+            <iframe id="webframe" src="https://duckduckgo.com"></iframe>
+        </div>
+
+        <div id="bookmarksView" class="view hidden">
+            <h2>Bookmarks</h2>
+            <ul id="bookmarkList"></ul>
+        </div>
+
+        <div id="downloadsView" class="view hidden">
+            <h2>Downloads</h2>
+            <ul id="downloadList"></ul>
+        </div>
+
+        <div id="consoleView" class="view hidden">
+            <h2>Console</h2>
+            <textarea id="consoleOutput" readonly></textarea>
+            <input id="consoleInput" placeholder="Type JS…">
+            <button id="runJS">Run</button>
+        </div>
+
+    </div>
+
+    <script src="app.js"></script>
 </body>
 </html>
