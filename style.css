@@ -1,0 +1,115 @@
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+}
+
+/* Themes */
+body[data-theme="dark"] {
+  background: #000;
+  color: #fff;
+}
+
+body[data-theme="neon"] {
+  background: radial-gradient(circle at top, #1a0020 0, #000 60%);
+  color: #fefefe;
+}
+
+/* Top bar */
+.top {
+  padding: 12px;
+  background: #111;
+  border-bottom: 1px solid #222;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tab {
+  padding: 6px 12px;
+  background: #222;
+  border: none;
+  color: #aaa;
+  border-radius: 6px;
+}
+
+.tab.active {
+  background: #ff7a1a;
+  color: #000;
+}
+
+/* Views */
+main {
+  padding: 12px;
+}
+
+.view {
+  display: none;
+}
+
+.view.active {
+  display: block;
+}
+
+/* Omnibox */
+.omnibox {
+  display: flex;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.omnibox input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  background: #111;
+  color: #fff;
+}
+
+.omnibox button {
+  padding: 10px 14px;
+  background: #ff7a1a;
+  border: none;
+  border-radius: 6px;
+  color: #000;
+}
+
+/* Browser */
+#browser-frame {
+  width: 100%;
+  height: 70vh;
+  border: none;
+  margin-top: 12px;
+  border-radius: 8px;
+  background: #000;
+}
+
+/* Console */
+#console-output {
+  background: #111;
+  border: 1px solid #333;
+  padding: 10px;
+  height: 60vh;
+  overflow-y: auto;
+  font-family: monospace;
+  border-radius: 6px;
+}
+
+#console-input {
+  width: 100%;
+  margin-top: 8px;
+  padding: 10px;
+  background: #000;
+  border: 1px solid #333;
+  color: #fff;
+  border-radius: 6px;
+}
