@@ -44,7 +44,14 @@
             <input id="url-input" class="url-input" placeholder="Search or enter URL…" />
 
             <button id="fav-btn" class="nav-btn">★</button>
-            <button id="download-btn" class="nav-btn">⬇️</button>
+
+            <button id="download-btn" class="nav-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M12 3v12m0 0l-5-5m5 5l5-5M5 19h14"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </button>
+
             <button id="share-btn" class="nav-btn">⤴</button>
             <button id="menu-btn" class="nav-btn">⋮</button>
           </div>
@@ -82,7 +89,7 @@
           <div class="setting-row">
             <span>Search Engine</span>
             <select id="search-engine">
-              <option value="https://duckduckgo.com/?q=">DuckDuckGo</option>
+              <option value="https://lite.duckduckgo.com/lite/?q=">DuckDuckGo Lite</option>
               <option value="https://www.google.com/search?q=">Google</option>
               <option value="https://www.bing.com/search?q=">Bing</option>
             </select>
