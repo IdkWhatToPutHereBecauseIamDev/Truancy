@@ -30,7 +30,7 @@ let activeTab = null;
 
 // Helpers
 function getEngine() {
-  return localStorage.getItem(ENGINE_KEY) || "https://duckduckgo.com/?q=";
+  return localStorage.getItem(ENGINE_KEY) || "https://lite.duckduckgo.com/lite/?q=";
 }
 
 function loadJSON(key, fallback) {
@@ -46,7 +46,7 @@ function saveJSON(key, value) {
 }
 
 // Tabs
-function createTab(url = "https://duckduckgo.com/") {
+function createTab(url = "https://lite.duckduckgo.com/lite/") {
   const id = Date.now() + Math.random();
   const tab = {
     id,
@@ -111,10 +111,15 @@ function navigate(raw) {
   if (!tab) return;
 
   let url = raw.trim();
+
+  // Empty → DuckDuckGo Lite
   if (!url) {
-    url = "https://duckduckgo.com/";
-  } else if (!url.startsWith("http://") && !url.startsWith("https://")) {
-    url = getEngine() + encodeURIComponent(raw);
+    url = "https://lite.duckduckgo.com/lite/";
+  }
+
+  // Search → DuckDuckGo Lite search
+  else if (!url.startsWith("http://") && !url.startsWith("https://")) {
+    url = "https://lite.duckduckgo.com/lite/?q=" + encodeURIComponent(url);
   }
 
   tab.url = url;
@@ -174,151 +179,4 @@ document.querySelectorAll(".side-btn").forEach((btn) => {
 document.querySelectorAll(".theme-dot").forEach((dot) => {
   dot.addEventListener("click", () => {
     const theme = dot.getAttribute("data-theme");
-    document.body.setAttribute("data-theme", theme);
-    localStorage.setItem(THEME_KEY, theme);
-  });
-});
-
-const savedTheme = localStorage.getItem(THEME_KEY);
-if (savedTheme) document.body.setAttribute("data-theme", savedTheme);
-
-// Search engine
-if (engineSelect) {
-  engineSelect.value = getEngine();
-  engineSelect.onchange = () => {
-    localStorage.setItem(ENGINE_KEY, engineSelect.value);
-  };
-}
-
-// Bookmarks
-function renderBookmarks() {
-  const bookmarks = loadJSON(BOOKMARK_KEY, []);
-  bookmarkList.innerHTML = "";
-  bookmarks.forEach((bm, idx) => {
-    const li = document.createElement("li");
-    li.className = "list-item";
-
-    const main = document.createElement("div");
-    main.className = "list-item-main";
-    main.innerHTML = `<div>${bm.title}</div><div class="list-item-url">${bm.url}</div>`;
-    main.onclick = () => navigate(bm.url);
-
-    const del = document.createElement("button");
-    del.className = "list-item-btn";
-    del.textContent = "Remove";
-    del.onclick = () => {
-      const arr = loadJSON(BOOKMARK_KEY, []);
-      arr.splice(idx, 1);
-      saveJSON(BOOKMARK_KEY, arr);
-      renderBookmarks();
-    };
-
-    li.appendChild(main);
-    li.appendChild(del);
-    bookmarkList.appendChild(li);
-  });
-}
-
-favBtn.onclick = () => {
-  const tab = tabs.find((t) => t.id === activeTab);
-  if (!tab) return;
-  const bookmarks = loadJSON(BOOKMARK_KEY, []);
-  bookmarks.push({
-    title: tab.url.replace(/^https?:\/\//, "").slice(0, 32),
-    url: tab.url
-  });
-  saveJSON(BOOKMARK_KEY, bookmarks);
-  renderBookmarks();
-};
-
-// Downloads
-function renderDownloads() {
-  const downloads = loadJSON(DOWNLOAD_KEY, []);
-  downloadList.innerHTML = "";
-  downloads
-    .slice()
-    .reverse()
-    .forEach((dl) => {
-      const li = document.createElement("li");
-      li.className = "list-item";
-
-      const main = document.createElement("div");
-      main.className = "list-item-main";
-      main.innerHTML = `<div>${dl.name}</div><div class="list-item-url">${dl.url} • ${dl.time}</div>`;
-      main.onclick = () => navigate(dl.url);
-
-      li.appendChild(main);
-      downloadList.appendChild(li);
-    });
-}
-
-downloadBtn.onclick = () => {
-  const tab = tabs.find((t) => t.id === activeTab);
-  if (!tab) return;
-  const downloads = loadJSON(DOWNLOAD_KEY, []);
-  downloads.push({
-    name: tab.url.replace(/^https?:\/\//, "").slice(0, 32),
-    url: tab.url,
-    time: new Date().toLocaleTimeString()
-  });
-  saveJSON(DOWNLOAD_KEY, downloads);
-  renderDownloads();
-};
-
-// Share / menu (placeholder logging)
-shareBtn.onclick = () => {
-  const tab = tabs.find((t) => t.id === activeTab);
-  if (!tab) return;
-  consoleLog("Share: " + tab.url);
-};
-
-menuBtn.onclick = () => {
-  consoleLog("Menu opened (extend with options later).");
-};
-
-// Console
-function consoleLog(msg) {
-  const div = document.createElement("div");
-  div.textContent = "> " + msg;
-  consoleOut.appendChild(div);
-  consoleOut.scrollTop = consoleOut.scrollHeight;
-}
-
-consoleIn.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") {
-    const cmd = consoleIn.value.trim();
-    consoleIn.value = "";
-    if (!cmd) return;
-
-    if (cmd === "clear") {
-      consoleOut.innerHTML = "";
-      return;
-    }
-
-    if (cmd.startsWith("open ")) {
-      navigate(cmd.slice(5));
-      return;
-    }
-
-    if (cmd.startsWith("search ")) {
-      const q = cmd.slice(7);
-      navigate(q);
-      return;
-    }
-
-    consoleLog("Unknown command: " + cmd);
-  }
-});
-
-// Ctrl+Shift+C → console
-document.addEventListener("keydown", (e) => {
-  if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "c") {
-    const btn = document.querySelector('.side-btn[data-view="console"]');
-    if (btn) btn.click();
-  }
-});
-
-// Init
-createTab();
-renderBookmarks();
-renderDownloads();
+   
