@@ -7,14 +7,25 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body data-theme="dark">
-
   <header class="top">
     <div class="title">TRUANCY</div>
     <nav class="tabs">
-      <button class="tab active" data-view="home">Home</button>
-      <button class="tab" data-view="browser">Browser</button>
-      <button class="tab" data-view="settings">Settings</button>
-      <button class="tab" data-view="console">Console</button>
+      <button class="tab active" data-view="home">
+        <span class="tab-icon">T</span>
+        Home
+      </button>
+      <button class="tab" data-view="browser">
+        <span class="tab-icon">B</span>
+        Browser
+      </button>
+      <button class="tab" data-view="settings">
+        <span class="tab-icon">S</span>
+        Settings
+      </button>
+      <button class="tab" data-view="console">
+        <span class="tab-icon">C</span>
+        Console
+      </button>
     </nav>
   </header>
 
@@ -22,10 +33,10 @@
     <!-- HOME -->
     <section id="view-home" class="view active">
       <h1>Welcome to Truancy</h1>
-      <p>Use tru:// links for official pages.</p>
+      <p>Use tru:// for official pages. Default search: DuckDuckGo.</p>
 
       <div class="omnibox">
-        <input id="urlbox" type="text" placeholder="Enter URL or tru://…" />
+        <input id="urlbox" type="text" placeholder="Enter URL, search, or tru://…" />
         <button id="go">Go</button>
       </div>
 
@@ -36,13 +47,12 @@
     <!-- BROWSER -->
     <section id="view-browser" class="view">
       <h1>Browser</h1>
+      <p>Loads sites in real tabs. Empty = DuckDuckGo start page.</p>
 
       <div class="omnibox">
-        <input id="embed-url" type="text" placeholder="Enter URL or tru://…" />
-        <button id="embed-go">Load</button>
+        <input id="browser-url" type="text" placeholder="Enter URL, search, or tru://…" />
+        <button id="browser-go">Go</button>
       </div>
-
-      <iframe id="browser-frame" src="about:blank"></iframe>
     </section>
 
     <!-- SETTINGS -->
@@ -76,7 +86,7 @@
     <section id="view-console" class="view">
       <h1>Console</h1>
       <div id="console-output"></div>
-      <input id="console-input" placeholder="Type a command…" />
+      <input id="console-input" placeholder="Commands: open <url>, open tru://settings, clear" />
     </section>
   </main>
 
