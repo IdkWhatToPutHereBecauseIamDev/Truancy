@@ -2,93 +2,88 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Truancy</title>
+  <title>Truancy GX</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="style.css" />
 </head>
-<body data-theme="dark">
-  <header class="top">
-    <div class="title">TRUANCY</div>
-    <nav class="tabs">
-      <button class="tab active" data-view="home">
-        <span class="tab-icon">T</span>
-        Home
-      </button>
-      <button class="tab" data-view="browser">
-        <span class="tab-icon">B</span>
-        Browser
-      </button>
-      <button class="tab" data-view="settings">
-        <span class="tab-icon">S</span>
-        Settings
-      </button>
-      <button class="tab" data-view="console">
-        <span class="tab-icon">C</span>
-        Console
-      </button>
-    </nav>
-  </header>
+<body data-theme="gx-red">
 
-  <main>
-    <!-- HOME -->
-    <section id="view-home" class="view active">
-      <h1>Welcome to Truancy</h1>
-      <p>Use tru:// for official pages. Default search: DuckDuckGo.</p>
+  <div class="shell">
 
-      <div class="omnibox">
-        <input id="urlbox" type="text" placeholder="Enter URL, search, or tru://…" />
-        <button id="go">Go</button>
-      </div>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">T</div>
+      <button class="side-btn active" data-view="browser">🌐</button>
+      <button class="side-btn" data-view="settings">⚙️</button>
+      <button class="side-btn" data-view="console">>_</button>
+    </aside>
 
-      <h2>History</h2>
-      <ul id="log"></ul>
-    </section>
+    <!-- Main -->
+    <div class="main">
 
-    <!-- BROWSER -->
-    <section id="view-browser" class="view">
-      <h1>Browser</h1>
-      <p>Loads sites in real tabs. Empty = DuckDuckGo start page.</p>
+      <!-- Topbar -->
+      <header class="topbar">
+        <div class="tabs" id="tab-strip"></div>
+        <button id="new-tab" class="new-tab-btn">+</button>
+      </header>
 
-      <div class="omnibox">
-        <input id="browser-url" type="text" placeholder="Enter URL, search, or tru://…" />
-        <button id="browser-go">Go</button>
-      </div>
-    </section>
+      <!-- Browser View -->
+      <main class="views">
 
-    <!-- SETTINGS -->
-    <section id="view-settings" class="view">
-      <h1>Settings</h1>
+        <section id="view-browser" class="view active">
 
-      <div class="setting-row">
-        <span>Theme</span>
-        <div class="setting-actions">
-          <button class="theme-btn" data-theme="dark">Dark</button>
-          <button class="theme-btn" data-theme="neon">Neon</button>
-        </div>
-      </div>
+          <!-- Browser Top Bar -->
+          <div class="browser-bar">
+            <button id="back-btn" class="nav-btn">⟵</button>
+            <button id="forward-btn" class="nav-btn">⟶</button>
+            <button id="refresh-btn" class="nav-btn">⟳</button>
 
-      <div class="setting-row">
-        <span>Search Engine</span>
-        <select id="search-engine">
-          <option value="https://duckduckgo.com/?q=">DuckDuckGo</option>
-          <option value="https://www.google.com/search?q=">Google</option>
-          <option value="https://www.bing.com/search?q=">Bing</option>
-        </select>
-      </div>
+            <input id="url-input" class="url-input" placeholder="Search or enter URL…" />
 
-      <div class="setting-row">
-        <span>Clear history</span>
-        <button id="clear-history">Clear</button>
-      </div>
-    </section>
+            <button id="fav-btn" class="nav-btn">★</button>
+            <button id="share-btn" class="nav-btn">⤴</button>
+            <button id="menu-btn" class="nav-btn">⋮</button>
+          </div>
 
-    <!-- CONSOLE -->
-    <section id="view-console" class="view">
-      <h1>Console</h1>
-      <div id="console-output"></div>
-      <input id="console-input" placeholder="Commands: open <url>, open tru://settings, clear" />
-    </section>
-  </main>
+          <!-- Browser Frame -->
+          <iframe id="browser-frame" class="browser-frame"></iframe>
+
+        </section>
+
+        <!-- SETTINGS -->
+        <section id="view-settings" class="view">
+          <h2>Settings</h2>
+
+          <div class="setting-row">
+            <span>Theme</span>
+            <div class="theme-options">
+              <span class="theme-dot" data-theme="gx-red"></span>
+              <span class="theme-dot" data-theme="gx-orange"></span>
+              <span class="theme-dot" data-theme="gx-purple"></span>
+            </div>
+          </div>
+
+          <div class="setting-row">
+            <span>Search Engine</span>
+            <select id="search-engine">
+              <option value="https://duckduckgo.com/?q=">DuckDuckGo</option>
+              <option value="https://www.google.com/search?q=">Google</option>
+              <option value="https://www.bing.com/search?q=">Bing</option>
+            </select>
+          </div>
+
+        </section>
+
+        <!-- CONSOLE -->
+        <section id="view-console" class="view">
+          <h2>Console</h2>
+          <div id="console-output" class="console-output"></div>
+          <input id="console-input" class="console-input" placeholder="Commands: open <url>, search <query>, clear" />
+        </section>
+
+      </main>
+    </div>
+  </div>
 
   <script src="app.js"></script>
 </body>
